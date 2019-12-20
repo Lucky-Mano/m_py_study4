@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+    api:
+        image: api_server
+        build: ./
+        ports:
+            - 9000:9000
+        volumes:
+            - ../:/app
+        environment:
+            - PORT=9000
