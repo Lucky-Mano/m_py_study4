@@ -14,12 +14,13 @@ def get(req, resp):
 
     clf = TextClassifier("mecab-ipadic-neologd")
     clf.load_vectorizer(Path("./vec.sav"))
-    clf.load_vectorizer(Path("./clf.sav"))
+    clf.load_classifier(Path("./clf.sav"))
 
     result = clf.predict(text)
 
     resp.headers = {
         "Content-Type": "application/json; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
     }
 
-    resp.media = json.dumps({"status": "OK", "result": result})
+    resp.media = json.dumps({"status": "OK", "result": int(result[0])})
